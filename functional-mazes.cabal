@@ -1,13 +1,13 @@
 name:                functional-mazes
 version:             0.1.0.0
--- synopsis:
--- description:
-homepage:            https://github.com/githubuser/functional-mazes#readme
-license:             BSD3
+synopsis:            Maze generation
+description:         Generate mazes of different shapes, sizes and complexities
+homepage:            https://github.com/julius383/functional-mazes#readme
+license:             MIT
 license-file:        LICENSE
-author:              Author name here
-maintainer:          example@example.com
-copyright:           2019 Author name here
+author:              Julius Kibunjis
+maintainer:          kibunjiajulius@gmail.com
+copyright:           2019 Julius Kibunjis
 category:            Web
 build-type:          Simple
 cabal-version:       >=1.10
