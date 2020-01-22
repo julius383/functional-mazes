@@ -23,11 +23,11 @@ ofile = "out.png"
 draw = renderRasterific ofile dimensions
 
 drawSquareMaze :: (DynGraph gr, Show a) => gr a Integer -> Diagram B
-drawSquareMaze g = (drawnCells `atop` border) # centerXY # pad 1.1 where
+drawSquareMaze g = (border `atop` drawnCells) # centerXY # pad 1.1 where
   cells      = map (map (drawCell g)) nodesList
   nodesList  = map (spf g) (lpf g 1)
   drawnCells = vcat $ map hcat cells
-  border     = boundingRect drawnCells # lw thick 
+  border     = boundingRect drawnCells # lw medium 
 
 drawCell :: (DynGraph gr, Show a) => gr a Integer -> Node -> Diagram B
 drawCell g n 

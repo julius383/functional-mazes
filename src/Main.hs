@@ -13,8 +13,8 @@ import Algos
 
 main :: IO ()
 main = do
-  let maze = mazeGraph 100
-      myMaze = asSquare maze 10 10
+  let maze = mazeGraph 256
+      myMaze = asSquare maze 16 16
   gened <- generate $ binaryTree myMaze South East
   draw (drawSquareMaze gened)
   prettyPrint gened
