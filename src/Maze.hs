@@ -67,13 +67,13 @@ merge outer inner
     insEdges  (vert ++ horiz ++ innerCons) outer
   where
     innerHoriz = tail $ spf inner innerEntry
-    innerVert = tail $ lpf inner innerEntry
+    innerVert  = tail $ lpf inner innerEntry
     innerEntry =
       case find (\x -> null (inn outer x) && null (out outer x)) (nodes outer) of
         Just x -> x
     outerHoriz = tail $ spf outer outerEntry
-    outerVert = tail $ lpf outer outerEntry
-    outerEntry =  x
+    outerVert  = tail $ lpf outer outerEntry
+    outerEntry = x
       where
         x =
           last $
@@ -81,8 +81,8 @@ merge outer inner
             (\x -> length (inn outer x) == 2 || length (out outer x) == 2)
             (nodes outer)
     -- diag = connect 1 (head outerVert) innerEntry
-    vert = zipWith (connect 2) outerHoriz (innerEntry : innerHoriz)
-    horiz = zipWith (connect 1) outerVert (innerEntry : innerVert)
+    vert      = zipWith (connect 2) outerHoriz (innerEntry : innerHoriz)
+    horiz     = zipWith (connect 1) outerVert (innerEntry : innerVert)
     innerCons = labEdges inner \\ labEdges outer
 
 minByEdge :: DynGraph gr => gr a Integer -> Node -> Node
@@ -109,12 +109,12 @@ lpf g cur = cur : follow g cur 2
 -- FIXME
 vizRow ::  (DynGraph gr, Show a) => gr a Integer -> Node -> Doc
 vizRow g s = front <+> rest where
-  front =  text (show s) <+> text "->"
+  front      = text (show s) <+> text "->"
   neighbours = spf g s
-  rest = hsep $ intersperse (text "->") $ map (text . show) neighbours
+  rest       = hsep $ intersperse (text "->") $ map (text . show) neighbours
 
 visualize :: (DynGraph gr, Show a) => gr a Integer -> String
 visualize g = render $ vcat (map (vizRow g) rows) <+> text "\n"
   where
-    rows = start : lpf g start
+    rows  = start : lpf g start
     start = head $ nodes g

@@ -22,7 +22,7 @@ cardNeighbours g c n = case c of
 
 removeEdges :: DynGraph gr => gr a Integer -> [LEdge Integer] -> gr a Integer
 removeEdges g xs = insEdges newEdges g' where
-  g' = delEdges (map toEdge xs) g
+  g'       = delEdges (map toEdge xs) g
   newEdges = map (\(x, y, z) -> (x, y, negate z)) xs
 
 binaryTree :: DynGraph gr => gr a Integer -> Cardinal -> Cardinal -> Gen (gr a Integer)
@@ -34,9 +34,9 @@ binaryTree g a b = do
                          [] -> Nothing
                          xs -> Just (head xs)
                  xs -> Just (head xs)
-  let orderedCells  = concatMap (spf g) (lpf g 1)
-      toRemove = zipWith removeWall choices orderedCells
-      nonMaybe = filter isJust toRemove
-      edgeList = map fromJust nonMaybe
+  let orderedCells = concatMap (spf g) (lpf g 1)
+      toRemove     = zipWith removeWall choices orderedCells
+      nonMaybe     = filter isJust toRemove
+      edgeList     = map fromJust nonMaybe
   return $ removeEdges g edgeList
 
