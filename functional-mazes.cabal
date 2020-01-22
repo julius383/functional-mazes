@@ -17,5 +17,8 @@ executable fmaze
   hs-source-dirs:      src
   main-is:             Main.hs
   default-language:    Haskell2010
+  other-modules:       Maze, Draw, Algos
   build-depends:       base >= 4.7 && < 5,
-                       fgl, diagrams, lens, fgl-visualize
+                       fgl, diagrams, colour, diagrams-svg,
+                       diagrams-rasterific, fgl-visualize, pretty,
+                       QuickCheck, diagrams-lib

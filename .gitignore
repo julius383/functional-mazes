@@ -30,3 +30,4 @@ cabal.project.local~
 
 *.png
 *.dot
+*.svg
