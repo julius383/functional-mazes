@@ -18,3 +18,4 @@ main = do
   gened <- generate $ binaryTree myMaze South East
   draw (drawSquareMaze gened)
   prettyPrint gened
+  prettyPrint myMaze

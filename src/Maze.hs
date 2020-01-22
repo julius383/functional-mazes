@@ -43,6 +43,8 @@ link _ _ = []
   grid
 -}
 asSquare :: DynGraph gr => gr a Integer -> Int -> Int -> gr a Integer 
+asSquare g _ 0 = g
+asSquare g 0 _ = g
 asSquare g 1 1 = merge g sg where
   sg = subgraph [n] g
   n = head $ filter (noEdges g) (nodes g) :: Node
@@ -60,6 +62,7 @@ asSquare g l w = merge g (asSquare newGraph (l - 1) (w - 1)) where
 merge :: DynGraph gr  => gr a Integer -> gr a Integer -> gr a Integer
 merge outer inner
   | all (noEdges outer) (nodes outer) = inner -- outermost case
+  | all (noEdges inner) (nodes inner) = outer 
   | otherwise =
     insEdges  (vert ++ horiz ++ innerCons) outer
   where
