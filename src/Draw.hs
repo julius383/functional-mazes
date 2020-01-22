@@ -43,10 +43,3 @@ drawCell g n
     check i xs    = case find (\(_, _, e) -> i == e) xs of
                    Nothing -> white
                    Just _ -> black
-
-multiSquare 
-  = square 5 
-  # explodeTrail
-  # zipWith lc [white, green, yellow, red]
-  # mconcat # centerXY # pad 1.1 `Diagrams.Prelude.atop` text "1"
-
