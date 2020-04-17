@@ -21,4 +21,4 @@ executable fmaze
   build-depends:       base >= 4.7 && < 5,
                        fgl, diagrams, colour, diagrams-svg,
                        diagrams-rasterific, fgl-visualize, pretty,
-                       QuickCheck, diagrams-lib
+                       QuickCheck, diagrams-lib, containers

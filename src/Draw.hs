@@ -8,14 +8,14 @@ import Diagrams.Backend.Rasterific
 import Diagrams.Prelude
 import Diagrams.TwoD.Size
 import Data.Colour.Names
-import Data.Graph.Inductive
+import Data.Graph.Inductive hiding ((&))
 import Data.List
 import Data.Maybe
 
 import Maze
 
 dimensions :: Num n => SizeSpec V2 n
-dimensions = mkSizeSpec2D (Just 800) (Just 800)
+dimensions = mkSizeSpec2D (Just 600) (Just 600)
 
 ofile :: FilePath
 ofile = "out.png"
@@ -23,7 +23,7 @@ ofile = "out.png"
 draw = renderRasterific ofile dimensions
 
 drawSquareMaze :: (DynGraph gr, Show a) => gr a Integer -> Diagram B
-drawSquareMaze g = (border `atop` drawnCells) # centerXY # pad 1.1 where
+drawSquareMaze g = (border `atop` drawnCells) # centerXY # pad 1.1 # bg white where
   cells      = map (map (drawCell g)) nodesList
   nodesList  = map (spf g) (lpf g 1)
   drawnCells = vcat $ map hcat cells

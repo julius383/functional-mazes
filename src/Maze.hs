@@ -17,9 +17,10 @@ mazeGraph n = mkGraph (zip nodes nodes) emptyEdges
 
 -- | Get all possible pairs of edges for a list of nodes
 edgeCombinations :: [Node] -> [Edge]
-edgeCombinations xs = concatMap f xs
+edgeCombinations xs = concatMap combs xs
   where
-    f v = [(v, i) :: Edge | i <- filter (/= v) xs]
+    combs :: Node -> [Edge]
+    combs v = [(v, i) :: Edge | i <- filter (/= v) xs]
 
 -- | True if given node has no edges in or out
 noEdges :: Graph gr => gr a b -> Node -> Bool
@@ -54,7 +55,7 @@ asSquare g l w = merge g (asSquare newGraph (l - 1) (w - 1)) where
   horiz       = take (l - 1) avail
   vert        = (take (w - 1) . drop (l - 1)) avail
   linkedHoriz = link 1 $ entry : horiz
-  linkedVert  = link 2 $ entry :  vert
+  linkedVert  = link 2 $ entry : vert
   newGraph    = insEdges (linkedVert ++ linkedHoriz) g
   orphans     = filter (noEdges g) (nodes g)
 

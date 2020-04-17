@@ -13,9 +13,11 @@ import Algos
 
 main :: IO ()
 main = do
-  let maze = mazeGraph 256
-      myMaze = asSquare maze 16 16
-  gened <- generate $ binaryTree myMaze South East
+  let maze = mazeGraph 400
+      myMaze = asSquare maze 20 20
+  gened <- generate $ huntandkill myMaze 
   draw (drawSquareMaze gened)
+  let dot = showDot (fglToDot myMaze)
+  writeFile "file.dot" dot
   prettyPrint gened
   prettyPrint myMaze
